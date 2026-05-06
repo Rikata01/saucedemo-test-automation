@@ -27,3 +27,24 @@ test('login with empty fields', async ({ page }) => {
 
     await expect(await loginPage.getErrorMessage()).toBeVisible()
 })
+
+test('login with locked out user', async ({ page }) => {
+  const loginPage = new LoginPage(page)
+
+  await loginPage.goto()
+  await loginPage.login('locked_out_user', 'secret_sauce')
+
+  const errorMsg = await loginPage.getErrorMessage()
+  await expect(errorMsg).toBeVisible()
+  await expect(errorMsg).toContainText('Epic sadface: Sorry, this user has been locked out.')
+})
+
+test('login with problem user', async ({ page }) => {
+  const loginPage = new LoginPage(page)
+
+  await loginPage.goto()
+  await loginPage.login('problem_user', 'secret_sauce')
+
+  await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html')
+  // Note: UI bugs are intentional for this user (wrong images, wrong order)
+})
