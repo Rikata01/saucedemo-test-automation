@@ -39,6 +39,11 @@ This project is part of a structured **14-day QA Automation learning program** f
 
 ---
 
+## 📋 Test Cases
+[View Test Case Documentation](https://docs.google.com/spreadsheets/d/18EphiQlZ8sJxZU7Gdbc2ieTyk36txAUgZPcUXw7Bjlo/edit?usp=sharing)
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
