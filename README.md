@@ -1,6 +1,6 @@
 # 🧪 SauceDemo Test Automation
 
-A personal QA Automation portfolio built on [SauceDemo](https://www.saucedemo.com), demonstrating real-world testing practices using modern tools and design patterns.
+A personal QA Automation built on [SauceDemo](https://www.saucedemo.com), demonstrating real-world testing practices using modern tools and design patterns.
 
 
 
