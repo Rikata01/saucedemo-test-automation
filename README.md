@@ -1,9 +1,6 @@
 # 🧪 SauceDemo Test Automation
 
-A personal QA Automation built on [SauceDemo](https://www.saucedemo.com), demonstrating real-world testing practices using modern tools and design patterns.
-
-
-
+A personal QA Automation project built on [SauceDemo](https://www.saucedemo.com), demonstrating real-world testing practices using modern tools and design patterns.
 
 ## 📌 About This Project
 
@@ -19,8 +16,8 @@ This project is part of a structured **14-day QA Automation learning program** f
 |------|---------|
 | Playwright + TypeScript | Web UI Automation |
 | Page Object Model (POM) | Test architecture pattern |
+| Postman | API Testing |
 | GitHub Actions | CI/CD pipeline |
-| Postman | API Testing *(coming soon)* |
 | k6 | Performance / Load Testing *(coming soon)* |
 | Allure | Test Reporting *(coming soon)* |
 
@@ -37,9 +34,39 @@ This project is part of a structured **14-day QA Automation learning program** f
 | Locked out user | Correct error message shown for locked account |
 | Problem user | Login succeeds but UI bugs are noted |
 
+### Cart Tests (`cart.spec.ts`)
+| Test Case | Description |
+|-----------|-------------|
+| Add single item | Item added to cart correctly |
+| Add multiple items | Multiple items added and count updates |
+| Remove item | Item removed from cart correctly |
+| Cart persistence | Cart retains items after navigation |
+| Special characters | Boundary test with special char inputs |
+
+> ⚠️ BUG-001 detected — cart badge count mismatch across browsers
+
+### Checkout Tests (`checkout.spec.ts`)
+| Test Case | Description |
+|-----------|-------------|
+| Complete checkout flow | Full purchase flow completes successfully |
+| Empty field validation | Error shown when required fields are missing |
+| Price calculation | Total price matches sum of items |
+
+### API Tests (Postman — ReqRes API)
+| Test Case | Method | Endpoint |
+|-----------|--------|----------|
+| Get users list | GET | `/api/users?page=2` |
+| Get single user | GET | `/api/users/1` |
+| Get non-existent user | GET | `/api/users/999` |
+| Create user | POST | `/api/users` |
+| Update user | PUT | `/api/users/2` |
+| Delete user | DELETE | `/api/users/2` |
+| Login success | POST | `/api/login` |
+| Login missing password | POST | `/api/login` |
+
 ---
 
-## 📋 Test Cases
+## 📋 Test Cases & Bug Reports
 [View Test Case Documentation](https://docs.google.com/spreadsheets/d/18EphiQlZ8sJxZU7Gdbc2ieTyk36txAUgZPcUXw7Bjlo/edit?usp=sharing)
 
 ---
@@ -74,6 +101,12 @@ npx playwright test tests/login.spec.ts
 # Run in headed mode (see browser)
 npx playwright test --headed
 ```
+
+### Run API Tests
+1. Import `postman/ReqRes_API_Tests.postman_collection.json` into Postman
+2. Import `postman/ReqRes_ENV.postman_environment.json` as Environment
+3. Set `api_key` variable with your key from [app.reqres.in](https://app.reqres.in)
+4. Run Collection
 
 ---
 
