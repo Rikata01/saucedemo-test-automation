@@ -43,14 +43,14 @@ This project is part of a structured **14-day QA Automation learning program** f
 | Cart persistence | Cart retains items after navigation |
 | Special characters | Boundary test with special char inputs |
 
-> ⚠️ BUG-001 detected — cart badge count mismatch across browsers
-
 ### Checkout Tests (`checkout.spec.ts`)
 | Test Case | Description |
 |-----------|-------------|
 | Complete checkout flow | Full purchase flow completes successfully |
 | Empty field validation | Error shown when required fields are missing |
 | Price calculation | Total price matches sum of items |
+
+> ⚠️ BUG-001 detected — The system allows user to checkout form with Empty field validation
 
 ### API Tests (Postman — ReqRes API)
 | Test Case | Method | Endpoint |
