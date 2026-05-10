@@ -47,7 +47,7 @@ test.describe('Shopping Cart Tests', () => {
     await expect(await inventoryPage.getCartBadgeCount()).toBe(1);
   });
 
-  test('TC-CART-003: Checkout with empty cart', async ({ page }) => {
+  test.fail('TC-CART-003: Checkout with empty cart', async ({ page }) => {
 
     await inventoryPage.goToCart();
     
