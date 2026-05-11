@@ -40,31 +40,34 @@ This project is part of a structured **QA Automation learning program** focused 
 ---
 
 ## 📂 Project Structure
+
+```
 saucedemo-test-automation/
 ├── .github/
 │   └── workflows/
-│       └── playwright.yml          # CI/CD pipeline
+│       └── playwright.yml       # CI/CD pipeline
 ├── docs/
-│   └── bug-reports/
+│   └── bug-reports/             # Bug reports & Documentation
 │       ├── assets/
 │       │   └── BUG-001-screenshot.png
-│       └── BUG-001.md              # Empty cart checkout bug
-├── pages/
+│       └── BUG-001.md           # Empty cart checkout bug
+├── pages/                       # Page Object classes (POM)
 │   ├── CartPage.ts
 │   ├── CheckoutPage.ts
 │   ├── InventoryPage.ts
 │   ├── LoginPage.ts
-│   └── product/
+│   └── product/                 # Data constants & locators
 │       └── productData.ts
-├── postman/
+├── postman/                     #API Test with Postman
 │   ├── ReqRes API Tests.postman_collection.json
 │   └── ReqRes ENV.postman_environment.json
-├── tests/
+├── tests/                       # Test scripts (.spec.ts)
 │   ├── cart.spec.ts
 │   ├── checkout.spec.ts
 │   └── login.spec.ts
 ├── playwright.config.ts
 └── README.md
+```
 
 ---
 
