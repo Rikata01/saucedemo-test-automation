@@ -140,7 +140,7 @@ Bug reports are tracked in the [Test Cases & Strategy Sheet](https://docs.google
 
 | Bug ID | Title | Severity | Status |
 |--------|-------|----------|--------|
-| BUG-001 | System allows checkout with empty cart | High | Open |
+| [BUG-001](docs/bug-reports/BUG-001.md) | System allows checkout with empty cart | High | Open |
 
 ---
 
