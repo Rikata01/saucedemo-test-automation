@@ -12,13 +12,14 @@ export class InventoryPage{
     // private addToCartB_SLO = '[data-test="add-to-cart-sauce-labs-onesie"]'
     // private addToCartB_TAlltS = '[data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]'
 
-    private cartBadge = '[data-test="shopping-cart-badge"]'
-    private cartLink = '[data-test="shopping-cart-link"]'
-
-    private backProducts = '[data-test="back-to-products"]'
+    private cartBadge = '[data-test="shopping-cart-badge"]';
+    private cartLink = '[data-test="shopping-cart-link"]';
+    private inventoryItem = '[data-test="inventory-item"]';
+    
+    private backProducts = '[data-test="back-to-products"]';
 
     constructor(page: Page){
-        this.page = page
+        this.page = page;
     }
 
     async goToProductDetail(item: ProductName) {
@@ -28,7 +29,7 @@ export class InventoryPage{
 
     async addItemToCart(item: ProductName) {
         const selector = this.page.locator(`[data-test="add-to-cart-${ProductIDs[item]}"]`);
-        await selector.click()
+        await selector.click();
     }
 
     async removeItemFromCart(item: ProductName) {
@@ -54,13 +55,47 @@ export class InventoryPage{
         const badge = this.page.locator(this.cartBadge);
         return await badge.isVisible();
     }
+
+    async getCartBadge() {
+        return this.page.locator(this.cartBadge);
+    }
+
+    async getCartIcon() {
+        return this.page.locator(this.cartLink);
+    }
+
+    async getFirstInventoryItem() {
+        return this.page.locator(this.inventoryItem).first();
+    }
+
+    async getInventoryItemImgs(): Promise<number> {
+        return await this.page.evaluate((selector) => {
+            const imgs = Array.from(document.querySelectorAll(`${selector} img`))
+            return imgs.filter((img) => (img as HTMLImageElement).naturalWidth === 0).length
+        }, this.inventoryItem);
+    }
+
+    async getDistortedImageCount(): Promise<number> {
+      return await this.page.evaluate((selector) => {
+        const imgs = Array.from(document.querySelectorAll(`${selector} img`))
+        return imgs.filter((img) => {
+          const el = img as HTMLImageElement
+          if (el.naturalWidth === 0) return false // ยังไม่ load — ไม่นับ
+        
+          const naturalRatio = el.naturalWidth / el.naturalHeight
+          const displayRatio = el.width / el.height
+        
+          return Math.abs(naturalRatio - displayRatio) > 0.05 // tolerance 10%
+        }).length
+      }, this.inventoryItem)
+    }
     
     async goToCart() {
-        await this.page.click(this.cartLink)
+        await this.page.click(this.cartLink);
     }
 
     //inventory-item-PAGE
     async BackToInventory() {
-        await this.page.click(this.backProducts)
+        await this.page.click(this.backProducts);
     }
 }

@@ -98,6 +98,18 @@ saucedemo-test-automation/
 | TC-CHK-002 | Empty first name field — error message displayed |
 | TC-CHK-003 | Special characters in form fields — system accepts without error |
 
+### Mobile Tests (`mobile/mobile.spec.ts`)
+| Test Case | Description | Devices |
+|-----------|-------------|---------|
+| TC-M01 | Login successful on mobile | Pixel 5, iPhone 12 |
+| TC-M02 | Important elements visible in mobile viewport | Pixel 5, iPhone 12 |
+| TC-M03 | Add to cart — badge updates correctly | Pixel 5, iPhone 12 |
+| TC-M04 | Hamburger menu opens and closes correctly | Pixel 5, iPhone 12 |
+| TC-M05 | Portrait → Landscape rotation does not break layout | Pixel 5, iPhone 12 |
+| TC-M06 | Slow 3G Network — page still usable | Pixel 5 (CDP/Chromium only) |
+
+> TC-M06 runs on Chromium only. CDP (Chrome DevTools Protocol) is not supported on WebKit/Safari — this is a known Playwright limitation.
+
 ### API Tests (Postman — ReqRes API)
 | Test Case | Method | Endpoint |
 |-----------|--------|----------|
@@ -117,15 +129,18 @@ saucedemo-test-automation/
 | Document | Description |
 |----------|-------------|
 | [Test Cases & Strategy](https://docs.google.com/spreadsheets/d/18EphiQlZ8sJxZU7Gdbc2ieTyk36txAUgZPcUXw7Bjlo/edit?usp=sharing) | Full test case documentation with expected results |
-| [BUG-001](docs/bug-reports/BUG-001.md) | System allows checkout with empty cart |
 
 ---
 
 ## 🐛 Bug Reports
 
+Bug reports are tracked in the [Test Cases & Strategy Sheet](https://docs.google.com/spreadsheets/d/18EphiQlZ8sJxZU7Gdbc2ieTyk36txAUgZPcUXw7Bjlo/edit?usp=sharing).
+
+> `BUG-001.md` in this repo is an **example of bug report format only** — not an active bug tracker. All active bugs are documented in the Sheet above.
+
 | Bug ID | Title | Severity | Status |
 |--------|-------|----------|--------|
-| [BUG-001](docs/bug-reports/BUG-001.md) | System allows checkout with empty cart | High | Open |
+| BUG-001 | System allows checkout with empty cart | High | Open |
 
 ---
 
@@ -147,17 +162,23 @@ npx playwright install
 ### Run Tests
 
 ```bash
-# Run all tests
+# Run all desktop tests
 npx playwright test
 
 # Run specific test file
 npx playwright test tests/login.spec.ts
 
+# Run mobile tests
+npx playwright test --config=playwright.config.mobile.ts
+
 # Run in headed mode (see browser)
 npx playwright test --headed
 
-# View HTML report
-npx playwright show-report
+# View desktop report
+npx playwright show-report playwright-report-desktop
+
+# View mobile report
+npx playwright show-report playwright-report-mobile
 ```
 
 ### Run API Tests
