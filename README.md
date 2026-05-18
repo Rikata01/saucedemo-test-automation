@@ -3,6 +3,7 @@
 ![Playwright](https://img.shields.io/badge/Playwright-45ba4b?style=for-the-badge&logo=playwright&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![Allure](https://img.shields.io/badge/Allure-brightgreen?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyeiIvPjwvc3ZnPg==&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
 
@@ -20,8 +21,10 @@ This project is part of a structured **QA Automation learning program** focused 
 
 - **Page Object Model (POM)** — Maintainable and scalable test architecture
 - **Cross-browser Testing** — Chromium, Firefox, and WebKit
+- **Mobile Testing** — Pixel 5 and iPhone 12 viewports
 - **CI/CD Integration** — Automated test runs on every push via GitHub Actions
 - **API Testing** — Full CRUD coverage with Postman
+- **Allure Reporting** — Rich HTML reports with steps, screenshots, and environment info
 - **Bug Tracking** — Documented bug reports with screenshots and automated verification
 
 ---
@@ -33,9 +36,9 @@ This project is part of a structured **QA Automation learning program** focused 
 | Playwright + TypeScript | Web UI Automation |
 | Page Object Model (POM) | Test architecture pattern |
 | Postman | API Testing |
+| Allure Report | Test Reporting |
 | GitHub Actions | CI/CD pipeline |
 | k6 | Performance / Load Testing *(coming soon)* |
-| Allure | Test Reporting *(coming soon)* |
 
 ---
 
@@ -45,27 +48,35 @@ This project is part of a structured **QA Automation learning program** focused 
 saucedemo-test-automation/
 ├── .github/
 │   └── workflows/
-│       └── playwright.yml       # CI/CD pipeline
+│       └── playwright.yml          # CI/CD pipeline
+├── allure-results/
+│   ├── desktop/                    # Allure raw results (desktop)
+│   └── mobile/                     # Allure raw results (mobile)
+├── allure-report/
+│   ├── desktop/                    # Generated Allure report (desktop)
+│   └── mobile/                     # Generated Allure report (mobile)
 ├── docs/
-│   └── bug-reports/             # Bug reports & Documentation
+│   └── bug-reports/                # Bug reports & Documentation
 │       ├── assets/
 │       │   └── BUG-001-screenshot.png
-│       └── BUG-001.md           # Empty cart checkout bug
-├── pages/                       # Page Object classes (POM)
+│       └── BUG-001.md              # Empty cart checkout bug
+├── pages/                          # Page Object classes (POM)
 │   ├── CartPage.ts
 │   ├── CheckoutPage.ts
 │   ├── InventoryPage.ts
 │   ├── LoginPage.ts
-│   └── product/                 # Data constants & locators
+│   └── product/
 │       └── productData.ts
-├── postman/                     #API Test with Postman
+├── postman/                        # API Test with Postman
 │   ├── ReqRes API Tests.postman_collection.json
 │   └── ReqRes ENV.postman_environment.json
-├── tests/                       # Test scripts (.spec.ts)
+├── tests/                          # Test scripts (.spec.ts)
 │   ├── cart.spec.ts
 │   ├── checkout.spec.ts
-│   └── login.spec.ts
-├── playwright.config.ts
+│   ├── login.spec.ts
+│   └── mobile.spec.ts
+├── playwright.config.ts            # Desktop config
+├── playwright.config.mobile.ts     # Mobile config
 └── README.md
 ```
 
@@ -98,7 +109,7 @@ saucedemo-test-automation/
 | TC-CHK-002 | Empty first name field — error message displayed |
 | TC-CHK-003 | Special characters in form fields — system accepts without error |
 
-### Mobile Tests (`mobile/mobile.spec.ts`)
+### Mobile Tests (`mobile.spec.ts`)
 | Test Case | Description | Devices |
 |-----------|-------------|---------|
 | TC-M01 | Login successful on mobile | Pixel 5, iPhone 12 |
@@ -149,6 +160,7 @@ Bug reports are tracked in the [Test Cases & Strategy Sheet](https://docs.google
 ### Prerequisites
 - Node.js 18+
 - npm
+- Java 17+ (required for Allure CLI)
 
 ### Installation
 
@@ -174,12 +186,34 @@ npx playwright test --config=playwright.config.mobile.ts
 # Run in headed mode (see browser)
 npx playwright test --headed
 
-# View desktop report
+# View Playwright HTML report (desktop)
 npx playwright show-report playwright-report-desktop
 
-# View mobile report
+# View Playwright HTML report (mobile)
 npx playwright show-report playwright-report-mobile
 ```
+
+### Allure Reports
+
+> Requires Java 17+ — download from [Adoptium](https://adoptium.net)
+
+```bash
+# Generate and open desktop Allure report
+npx allure generate allure-results/desktop --clean -o allure-report/desktop
+npx allure open allure-report/desktop
+
+# Generate and open mobile Allure report
+npx allure generate allure-results/mobile --clean -o allure-report/mobile
+npx allure open allure-report/mobile
+```
+
+Allure reports include:
+- ✅ Test steps in human-readable format
+- ✅ Severity labels and ownership metadata
+- ✅ Screenshots on failure (automatic)
+- ✅ Video recordings on failure
+- ✅ Environment information (OS, Node version, project details)
+- ✅ Separate reports for desktop and mobile
 
 ### Run API Tests
 1. Import `postman/ReqRes API Tests.postman_collection.json` into Postman

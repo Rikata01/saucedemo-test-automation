@@ -10,6 +10,18 @@ export default defineConfig({
   reporter: [
     ['html', { outputFolder: 'playwright-report-mobile', open: 'never' }],
     ['list'],
+    ['allure-playwright', {
+    detail: true,
+    resultsDir: 'allure-results/mobile',
+    suiteTitle: false,
+    environmentInfo: {
+        OS: process.platform, // ให้ Node.js ดึงชื่อ OS ของเครื่องมาใส่อัตโนมัติ
+        Node_Version: process.version, // ดึงเวอร์ชัน Node อัตโนมัติ
+        Environment: 'QA (Staging)',
+        Project_Name: 'SauceDemo Portfolio',
+        QA_Engineer: 'Wissarut (Bank)'
+      },
+  }]
   ],
   projects: [
     {

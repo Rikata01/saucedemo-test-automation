@@ -13,6 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  testIgnore: ['**/mobile.spec.ts'],
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -25,6 +26,19 @@ export default defineConfig({
   reporter: [
     ['html', { outputFolder: 'playwright-report-desktop', open: 'never' }],
     ['list'],
+    ['allure-playwright', {
+    detail: true,
+    resultsDir: 'allure-results/desktop',
+    suiteTitle: false,
+    environmentInfo: {
+        OS: process.platform, // ให้ Node.js ดึงชื่อ OS ของเครื่องมาใส่อัตโนมัติ
+        Node_Version: process.version, // ดึงเวอร์ชัน Node อัตโนมัติ
+        Environment: 'QA (Staging)',
+        Project_Name: 'SauceDemo Portfolio',
+        QA_Engineer: 'Wissarut (Bank)'
+      },
+    }]
+    
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

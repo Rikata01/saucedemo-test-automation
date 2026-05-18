@@ -1,13 +1,26 @@
 import { test,expect } from '@playwright/test'
 import { LoginPage } from '../pages/LoginPage'
-
+import { allure } from 'allure-playwright';
 
 test.describe('Login Tests', () => {
   test('login with valid credentials', async ({ page }) => {
+      //allure
+      allure.label('severity', 'critical');
+      allure.label('owner', 'Bank');
+      allure.feature('Authentication');
+      allure.story('Valid Login Flow');
+      allure.description('Verify that standard_user can login successfully');
+
+
       const loginPage = new LoginPage(page)
 
-      await loginPage.goto()
-      await loginPage.login('standard_user', 'secret_sauce')
+      await allure.step('Navigate to login page', async () => {
+        await loginPage.goto()
+      });
+
+      await allure.step('Entry Username and Password', async () => {
+        await loginPage.login('standard_user', 'secret_sauce')
+      });
 
       await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html')
   })
