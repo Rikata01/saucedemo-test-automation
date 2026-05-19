@@ -5,6 +5,7 @@
 ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
 ![Allure](https://img.shields.io/badge/Allure-brightgreen?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyeiIvPjwvc3ZnPg==&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![k6](https://img.shields.io/badge/k6-7D64FF?style=for-the-badge&logo=k6&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
 
 A personal QA Automation portfolio built on [SauceDemo](https://www.saucedemo.com), demonstrating real-world testing practices using modern tools and industry-standard design patterns.
@@ -38,7 +39,7 @@ This project is part of a structured **QA Automation learning program** focused 
 | Postman | API Testing |
 | Allure Report | Test Reporting |
 | GitHub Actions | CI/CD pipeline |
-| k6 | Performance / Load Testing *(coming soon)* |
+| k6 | Performance / Load Testing |
 
 ---
 
@@ -60,6 +61,12 @@ saucedemo-test-automation/
 │       ├── assets/
 │       │   └── BUG-001-screenshot.png
 │       └── BUG-001.md              # Empty cart checkout bug
+├── k6/                             # Performance & Load Testing
+│   ├── scripts/
+│   │   ├── smoke-test.js           # 2 VUs, 1 minute
+│   │   ├── load-test.js            # 20 VUs, 5 minutes
+│   │   └── stress-test.js          # 100 VUs, 12 minutes
+│   └── PERFORMANCE-REPORT.md       # Test results & findings
 ├── pages/                          # Page Object classes (POM)
 │   ├── CartPage.ts
 │   ├── CheckoutPage.ts
@@ -121,6 +128,15 @@ saucedemo-test-automation/
 
 > TC-M06 runs on Chromium only. CDP (Chrome DevTools Protocol) is not supported on WebKit/Safari — this is a known Playwright limitation.
 
+### Performance Tests (k6 — test.k6.io)
+| Scenario | VUs | Duration | p95 | Error Rate | Result |
+|----------|-----|----------|-----|------------|--------|
+| Smoke Test | 2 | 1m | 291ms | 0% | ✅ PASS |
+| Load Test | 20 | 5m | 299ms | 0% | ✅ PASS |
+| Stress Test | 100 | 12m | 302ms | 0% | ✅ PASS |
+
+> Full report → [k6/PERFORMANCE-REPORT.md](k6/PERFORMANCE-REPORT.md)
+
 ### API Tests (Postman — ReqRes API)
 | Test Case | Method | Endpoint |
 |-----------|--------|----------|
@@ -140,6 +156,7 @@ saucedemo-test-automation/
 | Document | Description |
 |----------|-------------|
 | [Test Cases & Strategy](https://docs.google.com/spreadsheets/d/18EphiQlZ8sJxZU7Gdbc2ieTyk36txAUgZPcUXw7Bjlo/edit?usp=sharing) | Full test case documentation with expected results |
+| [Performance Report](k6/PERFORMANCE-REPORT.md) | k6 load test results — smoke, load, stress |
 
 ---
 
@@ -214,6 +231,21 @@ Allure reports include:
 - ✅ Video recordings on failure
 - ✅ Environment information (OS, Node version, project details)
 - ✅ Separate reports for desktop and mobile
+
+### Run Performance Tests
+
+> Requires [k6](https://k6.io/docs/get-started/installation/)
+
+```bash
+# Smoke test — 2 VUs, 1 minute
+k6 run k6/scripts/smoke-test.js
+
+# Load test — 20 VUs, 5 minutes
+k6 run k6/scripts/load-test.js
+
+# Stress test — 100 VUs, 12 minutes
+k6 run k6/scripts/stress-test.js
+```
 
 ### Run API Tests
 1. Import `postman/ReqRes API Tests.postman_collection.json` into Postman
