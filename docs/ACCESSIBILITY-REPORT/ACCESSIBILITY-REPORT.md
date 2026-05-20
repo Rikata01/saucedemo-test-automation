@@ -52,9 +52,7 @@ The developer needs to provide an explicit accessible name for the <select> elem
 Suggested Code Fix:
 
 HTML
-```html
 <select class="product_sort_container" data-test="product-sort-container" aria-label="Sort products by">
-```
 
 ---
 
