@@ -13,7 +13,6 @@ test.describe('Shopping Cart Tests', () => {
     inventoryPage = new InventoryPage(page);
     cartPage = new CartPage(page);
 
-    // Precondition: Login ด้วย standard_user และอยู่ที่หน้า Inventory
     await loginPage.goto();
     await loginPage.login('standard_user', 'secret_sauce');
     await expect(page).toHaveURL(/inventory.html/);
@@ -28,7 +27,6 @@ test.describe('Shopping Cart Tests', () => {
 
     await inventoryPage.goToCart();
     
-
     await expect(page).toHaveURL(/cart.html/);
     await expect(await cartPage.getCartItemCount()).toBe(3);
   });
