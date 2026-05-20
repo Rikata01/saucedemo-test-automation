@@ -46,21 +46,22 @@ The dropdown menu used for sorting products lacks an accessible name. When a vis
 </select>
 ```
 
+```markdown
 #### **How to Fix (Remediation):**
-The developer needs to provide an explicit accessible name for the <select> element. The most straightforward solution without breaking the current UI design is to add an aria-label attribute.
+The developer needs to provide an explicit accessible name for the `<select>` element. The most straightforward solution without breaking the current UI design is to add an `aria-label` attribute.
 
 **Suggested Code Fix:**
-
 ```html
 <select class="product_sort_container" data-test="product-sort-container" aria-label="Sort products by">
+  <option value="az">Name (A to Z)</option>
+  <option value="za">Name (Z to A)</option>
+  </select> 
 ```
 
 ---
 
 ## ✅ Conclusion
-
 Automated accessibility scanning identified 1 critical violation on the Product Listing page. 
 The remaining 3 pages passed WCAG 2.1 AA checks with no violations detected.
 
-The sort dropdown issue (BUG-A11Y-001) should be prioritized for remediation as it 
-completely blocks screen reader users from accessing the sort feature.
+The sort dropdown issue (BUG-A11Y-001) should be prioritized for remediation as it completely blocks screen reader users from accessing the sort feature.
