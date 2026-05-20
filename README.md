@@ -136,7 +136,7 @@ saucedemo-test-automation/
 | Load Test | 20 | 5m | 299ms | 0% | ✅ PASS |
 | Stress Test | 100 | 12m | 302ms | 0% | ✅ PASS |
 
-> Full report → [k6/PERFORMANCE-REPORT.md](k6/PERFORMANCE-REPORT.md)
+> Full report → [PERFORMANCE-REPORT.md](k6/PERFORMANCE-REPORT.md)
 
 ### Accessibility Tests (`tests/accessibility/a11y.spec.ts`)
 | Test Case | Page Tested | Status |
@@ -168,7 +168,7 @@ saucedemo-test-automation/
 |----------|-------------|
 | [Test Cases & Strategy](https://docs.google.com/spreadsheets/d/18EphiQlZ8sJxZU7Gdbc2ieTyk36txAUgZPcUXw7Bjlo/edit?usp=sharing) | Full test case documentation with expected results |
 | [Performance Report](k6/PERFORMANCE-REPORT.md) | k6 load test results — smoke, load, stress |
-| [Accessibility Report](ACCESSIBILITY-REPORT.md) | axe-core WCAG 2.1 AA scan results |
+| [Accessibility Report](docs\ACCESSIBILITY-REPORT\ACCESSIBILITY-REPORT.md) | axe-core WCAG 2.1 AA scan results |
 
 ---
 

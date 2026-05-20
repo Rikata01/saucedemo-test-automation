@@ -43,7 +43,7 @@ The dropdown menu used for sorting products lacks an accessible name. When a vis
   <option value="az">Name (A to Z)</option>
   <option value="za">Name (Z to A)</option>
   ...
-</select>
+</select>```
 
 #### **How to Fix (Remediation):**
 The developer needs to provide an explicit accessible name for the <select> element. The most straightforward solution without breaking the current UI design is to add an aria-label attribute.
@@ -51,7 +51,7 @@ The developer needs to provide an explicit accessible name for the <select> elem
 Suggested Code Fix:
 
 HTML
-<select class="product_sort_container" data-test="product-sort-container" aria-label="Sort products by">
+```<select class="product_sort_container" data-test="product-sort-container" aria-label="Sort products by">```
 
 ---
 
