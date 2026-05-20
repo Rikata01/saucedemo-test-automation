@@ -49,11 +49,11 @@ The dropdown menu used for sorting products lacks an accessible name. When a vis
 #### **How to Fix (Remediation):**
 The developer needs to provide an explicit accessible name for the <select> element. The most straightforward solution without breaking the current UI design is to add an aria-label attribute.
 
-Suggested Code Fix:
+**Suggested Code Fix:**
 
-HTML
+```html
 <select class="product_sort_container" data-test="product-sort-container" aria-label="Sort products by">
-
+```
 ---
 
 ## ✅ Conclusion
