@@ -146,7 +146,7 @@ saucedemo-test-automation/
 | TC-A11Y-003 | Product Detail | ✅ PASS |
 | TC-A11Y-004 | Cart Page | ✅ PASS |
 
-> Full report → [ACCESSIBILITY-REPORT.md](docs\ACCESSIBILITY-REPORT\ACCESSIBILITY-REPORT.md)
+> Full report → [ACCESSIBILITY-REPORT.md](docs/ACCESSIBILITY-REPORT/ACCESSIBILITY-REPORT.md)
 
 ### API Tests (Postman — ReqRes API)
 | Test Case | Method | Endpoint |
@@ -168,7 +168,7 @@ saucedemo-test-automation/
 |----------|-------------|
 | [Test Cases & Strategy](https://docs.google.com/spreadsheets/d/18EphiQlZ8sJxZU7Gdbc2ieTyk36txAUgZPcUXw7Bjlo/edit?usp=sharing) | Full test case documentation with expected results |
 | [Performance Report](k6/PERFORMANCE-REPORT.md) | k6 load test results — smoke, load, stress |
-| [Accessibility Report](docs\ACCESSIBILITY-REPORT\ACCESSIBILITY-REPORT.md) | axe-core WCAG 2.1 AA scan results |
+| [Accessibility Report](docs/ACCESSIBILITY-REPORT/ACCESSIBILITY-REPORT.md) | axe-core WCAG 2.1 AA scan results |
 
 ---
 
