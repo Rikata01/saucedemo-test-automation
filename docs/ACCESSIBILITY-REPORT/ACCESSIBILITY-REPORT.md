@@ -46,7 +46,7 @@ The dropdown menu used for sorting products lacks an accessible name. When a vis
 </select>
 ```
 
-```markdown
+
 #### **How to Fix (Remediation):**
 The developer needs to provide an explicit accessible name for the `<select>` element. The most straightforward solution without breaking the current UI design is to add an `aria-label` attribute.
 
